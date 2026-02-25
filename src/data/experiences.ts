@@ -1,34 +1,26 @@
 export const experiences = [
     {
-        period: '2023 – Present',
-        duration: '2 yrs',
-        company: 'Freelance / Personal Projects',
-        role: 'Full Stack Developer',
+        period: '2025 – 2026',
+        duration: '1+ yrs',
+        company: 'Freelance / Contractor',
+        role: 'Software Developer',
         description:
-            'Building full-stack web applications with React, TypeScript, and Node.js. Developed deployment automation tools, real-time chat systems, and portfolio sites with interactive demos. Focused on modern frontend patterns and cloud infrastructure.',
+            'Built a variety of website, micro services and softwares for a US based startup that is mostly focus on BPO related companies.',
         metrics: [
             { value: '4+', label: 'Projects shipped' },
-            { value: 'React', label: 'Primary stack' },
+            { value: 'MERN', label: 'Primary stack' },
         ],
     },
     {
-        period: '2021 – 2023',
-        duration: '2 yrs',
-        company: 'Software Development',
-        role: 'Backend / Full Stack Developer',
+        period: '2021 – 2024',
+        duration: '3 yrs',
+        company: 'City Government of Parañaque Department of HRMO',
+        role: 'Computer Operator III',
         description:
-            'Worked on backend services and API development. Built RESTful APIs, managed database schemas, and implemented authentication and authorization systems. Collaborated closely with frontend teams to deliver cohesive product features.',
+            'Worked on our in house Application for HRMO that is used for employee records and management. This is my first exposure to fullstack development.',
         metrics: [
-            { value: 'Node.js', label: 'Backend' },
-            { value: 'MongoDB', label: 'Database' },
+            { value: 'Ruby on Rails', label: 'Framework' },
+            { value: 'MySQL', label: 'Database' },
         ],
-    },
-    {
-        period: '2019 – 2021',
-        duration: '2 yrs',
-        company: 'Early Career',
-        role: 'Junior Developer',
-        description:
-            'Started building web applications and learning the fundamentals of full-stack development. Gained experience with JavaScript, HTML/CSS, version control, and agile workflows.',
-    },
+    }
 ];

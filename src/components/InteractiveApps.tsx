@@ -19,12 +19,12 @@ const InteractiveApps = () => {
                 <DinoGame />
             </div>
 
-            {/* DEV: Sprite test bench — remove when done tweaking */}
+            {/* DEV: Sprite test bench*/}
             {/* <SpriteTestBench /> */}
 
             <style>{`
                 .apps-section {
-                    padding: 100px 48px;
+                    padding: 50px 48px;
                     max-width: 1100px;
                     margin: 0 auto;
                 }

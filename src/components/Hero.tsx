@@ -9,7 +9,7 @@ const Hero = () => {
                     Building <em>robust</em> full-stack applications
                 </h1>
                 <p className="hero-desc fade-up delay-2">
-                    Full Stack Developer refreshing frontend skills and building modern web applications.
+                    Full Stack Developer building modern web applications.
                     I specialize in end-to-end development — from React interfaces to Node.js backends and cloud infrastructure.
                 </p>
                 <div className="hero-actions fade-up delay-3">
@@ -41,7 +41,7 @@ const Hero = () => {
 
             <style>{`
                 .hero-section {
-                    padding: 160px 48px 100px;
+                    padding: 100px 48px 50px;
                     max-width: 1100px;
                     margin: 0 auto;
                     display: grid;

@@ -33,25 +33,25 @@ const About = () => {
                     <div className="about-item">
                         <div className="about-item-label">Based in</div>
                         <div className="about-item-val">
-                            Remote
+                            Philippines
                             <br />
                             <span style={{ color: 'var(--ink-muted)', fontSize: '13px' }}>Open to on-site / hybrid</span>
                         </div>
                     </div>
-                    <div className="about-item">
+                    {/* <div className="about-item">
                         <div className="about-item-label">Tools</div>
                         <div className="about-item-val" style={{ fontSize: '13px', color: 'var(--ink-muted)', lineHeight: 1.8 }}>
                             VS Code · Git · Docker · Linux
                             <br />
                             Vite · CSS · MongoDB · Redis
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
             <style>{`
                 .about-section {
-                    padding: 100px 48px;
+                    padding: 50px 48px;
                     max-width: 1100px;
                     margin: 0 auto;
                 }

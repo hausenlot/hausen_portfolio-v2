@@ -35,7 +35,7 @@ const Experience = () => {
 
             <style>{`
                 .exp-section {
-                    padding: 100px 48px;
+                    padding: 50px 48px;
                     max-width: 1100px;
                     margin: 0 auto;
                 }
