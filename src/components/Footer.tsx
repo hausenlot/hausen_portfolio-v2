@@ -1,8 +1,45 @@
 const Footer = () => {
     return (
-        <footer className="fixed bottom-0 left-0 w-full h-16 bg-gray-50/80 dark:bg-zinc-950/80 backdrop-blur-md border-t-4 border-zinc-900 dark:border-zinc-100 flex items-center justify-center gap-6 z-50 transition-all duration-300">
-            <a href="#" className="font-bold underline text-xs tracking-widest hover:text-blue-600 dark:hover:text-blue-400 transition-colors">GITHUB</a>
-            <a href="#" className="font-bold underline text-xs tracking-widest hover:text-blue-600 dark:hover:text-blue-400 transition-colors">LINKEDIN</a>
+        <footer className="site-footer">
+            <span>© 2026 Ser Polo of hausenlot</span>
+            <span className="footer-links">
+                <a href="https://github.com/hausenlot" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/paul-john-sopranes-862848381/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </span>
+
+            <style>{`
+                .site-footer {
+                    padding: 40px 48px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px solid var(--border);
+                    font-size: 13px;
+                    color: var(--ink-muted);
+                    max-width: 1100px;
+                    margin: 0 auto;
+                }
+                .footer-links {
+                    display: flex;
+                    gap: 24px;
+                }
+                .footer-links a {
+                    color: var(--ink-muted);
+                    text-decoration: none;
+                    transition: color 0.2s;
+                }
+                .footer-links a:hover {
+                    color: var(--ink);
+                }
+                @media (max-width: 768px) {
+                    .site-footer {
+                        flex-direction: column;
+                        gap: 12px;
+                        text-align: center;
+                        padding: 40px 24px;
+                    }
+                }
+            `}</style>
         </footer>
     );
 };

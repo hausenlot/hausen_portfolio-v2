@@ -1,58 +1,92 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { type CellValue, checkWinner, findBestMove, findEasyMove } from './gameLogic';
 
-type CellValue = 'X' | 'O' | null;
+const EMPTY_BOARD: CellValue[] = Array(9).fill('');
 
 const TicTacToe = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [board, setBoard] = useState<CellValue[]>(Array(9).fill(null));
-    const [isXNext, setIsXNext] = useState(true);
+    const [board, setBoard] = useState<CellValue[]>([...EMPTY_BOARD]);
+    const [currentPlayer, setCurrentPlayer] = useState<'X' | 'O'>('X');
+    const [gameActive, setGameActive] = useState(true);
     const [score, setScore] = useState({ you: 0, ai: 0, draws: 0 });
+    const [winningCells, setWinningCells] = useState<number[]>([]);
+    const [easyMode, setEasyMode] = useState(false);
 
-    const calculateWinner = (squares: CellValue[]): CellValue => {
-        const lines = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6],
-        ];
-        for (const [a, b, c] of lines) {
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                return squares[a];
+    const result = checkWinner(board);
+
+    // AI move
+    useEffect(() => {
+        if (currentPlayer !== 'O' || !gameActive || result) return;
+        const pickMove = easyMode ? findEasyMove : findBestMove;
+
+        const timer = setTimeout(() => {
+            const move = pickMove([...board]);
+            if (move === -1) return;
+
+            const newBoard = [...board];
+            newBoard[move] = 'O';
+            setBoard(newBoard);
+            setCurrentPlayer('X');
+
+            const moveResult = checkWinner(newBoard);
+            if (moveResult) {
+                setGameActive(false);
+                if (moveResult.pattern) setWinningCells(moveResult.pattern);
+                if (moveResult.winner === 'O') {
+                    setScore((s) => ({ ...s, ai: s.ai + 1 }));
+                    setEasyMode(true); // go easy next round
+                } else if (moveResult.winner === 'Tie') {
+                    setScore((s) => ({ ...s, draws: s.draws + 1 }));
+                    setEasyMode(true); // go easy next round
+                }
             }
-        }
-        return null;
-    };
+        }, 400);
 
-    const winner = calculateWinner(board);
-    const isDraw = !winner && board.every((cell) => cell !== null);
+        return () => clearTimeout(timer);
+    }, [currentPlayer, gameActive, board, result, easyMode]);
 
-    const handleClick = (index: number) => {
-        if (board[index] || winner) return;
-        const newBoard = [...board];
-        newBoard[index] = isXNext ? 'X' : 'O';
-        setBoard(newBoard);
-        setIsXNext(!isXNext);
+    const handleClick = useCallback(
+        (index: number) => {
+            if (board[index] !== '' || !gameActive || currentPlayer !== 'X') return;
 
-        const newWinner = calculateWinner(newBoard);
-        if (newWinner) {
-            setScore((prev) => ({
-                ...prev,
-                [newWinner === 'X' ? 'you' : 'ai']: prev[newWinner === 'X' ? 'you' : 'ai'] + 1,
-            }));
-        } else if (newBoard.every((cell) => cell !== null)) {
-            setScore((prev) => ({ ...prev, draws: prev.draws + 1 }));
-        }
-    };
+            const newBoard = [...board];
+            newBoard[index] = 'X';
+            setBoard(newBoard);
+
+            const moveResult = checkWinner(newBoard);
+            if (moveResult) {
+                setGameActive(false);
+                if (moveResult.pattern) setWinningCells(moveResult.pattern);
+                if (moveResult.winner === 'X') {
+                    setScore((s) => ({ ...s, you: s.you + 1 }));
+                    setEasyMode(false); // won the easy round, back to hard
+                } else if (moveResult.winner === 'Tie') {
+                    setScore((s) => ({ ...s, draws: s.draws + 1 }));
+                    setEasyMode(true); // go easy next round
+                }
+            } else {
+                setCurrentPlayer('O');
+            }
+        },
+        [board, gameActive, currentPlayer],
+    );
 
     const resetGame = () => {
-        setBoard(Array(9).fill(null));
-        setIsXNext(true);
+        setBoard([...EMPTY_BOARD]);
+        setCurrentPlayer('X');
+        setGameActive(true);
+        setWinningCells([]);
     };
 
-    const statusText = winner
-        ? `${winner === 'X' ? 'You' : 'AI'} win!`
-        : isDraw
-            ? 'Draw!'
-            : `${isXNext ? 'Your' : "AI's"} turn`;
+    const statusText = result
+        ? result.winner === 'Tie'
+            ? "It's a draw!"
+            : result.winner === 'X'
+                ? 'You win!'
+                : 'AI wins!'
+        : currentPlayer === 'X'
+            ? 'Your turn'
+            : 'AI is thinking…';
 
     return (
         <>
@@ -86,7 +120,12 @@ const TicTacToe = () => {
                                 <button
                                     key={i}
                                     onClick={() => handleClick(i)}
-                                    className={`ttt-cell ${!cell && !winner ? 'ttt-cell-active' : ''} ${cell === 'X' ? 'ttt-x' : ''}`}
+                                    className={[
+                                        'ttt-cell',
+                                        !cell && gameActive && currentPlayer === 'X' ? 'ttt-cell-active' : '',
+                                        cell === 'X' ? 'ttt-x' : '',
+                                        winningCells.includes(i) ? 'ttt-winning' : '',
+                                    ].join(' ')}
                                 >
                                     {cell}
                                 </button>
@@ -100,7 +139,7 @@ const TicTacToe = () => {
                         </div>
 
                         <button onClick={resetGame} className="app-action-btn">
-                            {winner || isDraw ? 'Play again' : 'Reset'}
+                            {!gameActive ? 'Play again' : 'Reset'}
                         </button>
                     </div>
                 </div>
@@ -242,6 +281,10 @@ const TicTacToe = () => {
                 }
                 .ttt-x {
                     color: var(--accent);
+                }
+                .ttt-winning {
+                    background: var(--accent-light) !important;
+                    border: 2px solid var(--accent);
                 }
                 .ttt-score {
                     display: flex;

@@ -4,49 +4,131 @@ const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
 
     const navItems = [
-        { name: 'ABOUT', href: '#about' },
-        { name: 'SKILLS', href: '#skills' },
-        { name: 'APPS', href: '#apps' },
-        { name: 'PROJECTS', href: '#projects' },
+        { name: 'Work', href: '#work' },
+        { name: 'About', href: '#about' },
+        { name: 'Experience', href: '#experience' },
     ];
 
     return (
-        <nav className="fixed top-0 left-0 w-full h-16 bg-gray-50/80 dark:bg-zinc-950/80 backdrop-blur-md border-b-4 border-zinc-900 dark:border-zinc-100 flex items-center justify-between px-6 z-50 transition-all duration-300">
-            <h1 className="font-black text-xl tracking-tightest">HAUSEN.</h1>
+        <nav
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 100,
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '20px 48px',
+                background: theme === 'dark'
+                    ? 'rgba(20, 18, 16, 0.88)'
+                    : 'rgba(245, 243, 238, 0.88)',
+                backdropFilter: 'blur(12px)',
+                borderBottom: '1px solid var(--border)',
+                transition: 'background 0.3s',
+            }}
+        >
+            <a
+                href="#"
+                style={{
+                    fontFamily: 'var(--serif)',
+                    fontSize: '17px',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
+                    color: 'var(--ink)',
+                    textDecoration: 'none',
+                }}
+            >
+                Paul (polo)
+            </a>
 
-            <div className="flex items-center gap-6">
-                <div className="hidden sm:flex gap-4">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '36px' }}>
+                <ul
+                    className="nav-links-desktop"
+                    style={{
+                        display: 'flex',
+                        gap: '36px',
+                        listStyle: 'none',
+                    }}
+                >
                     {navItems.map((item) => (
-                        <a
-                            key={item.name}
-                            href={item.href}
-                            className="font-bold text-xs tracking-widest hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
-                            {item.name}
-                        </a>
+                        <li key={item.name}>
+                            <a
+                                href={item.href}
+                                style={{
+                                    fontSize: '14px',
+                                    fontWeight: 400,
+                                    color: 'var(--ink-muted)',
+                                    textDecoration: 'none',
+                                    letterSpacing: '0.01em',
+                                    transition: 'color 0.2s',
+                                }}
+                                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+                                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-muted)')}
+                            >
+                                {item.name}
+                            </a>
+                        </li>
                     ))}
-                </div>
+                    <li>
+                        <a
+                            href="#contact"
+                            style={{
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                color: theme === 'dark' ? 'var(--ink)' : 'var(--white)',
+                                background: theme === 'dark' ? 'var(--accent)' : 'var(--ink)',
+                                padding: '8px 20px',
+                                borderRadius: '40px',
+                                textDecoration: 'none',
+                                transition: 'background 0.2s',
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--accent)')}
+                            onMouseLeave={(e) =>
+                                (e.currentTarget.style.background = theme === 'dark' ? 'var(--accent)' : 'var(--ink)')
+                            }
+                        >
+                            Get in touch
+                        </a>
+                    </li>
+                </ul>
 
+                {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}
-                    className="p-2 border-2 border-zinc-900 dark:border-zinc-100 bg-white dark:bg-zinc-800 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all font-bold text-[10px] tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+                    style={{
+                        background: 'none',
+                        border: '1px solid var(--border)',
+                        borderRadius: '40px',
+                        padding: '6px 14px',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        fontWeight: 500,
+                        color: 'var(--ink-muted)',
+                        transition: 'all 0.2s',
+                        fontFamily: 'var(--sans)',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.color = 'var(--ink)';
+                        e.currentTarget.style.borderColor = 'var(--ink)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.color = 'var(--ink-muted)';
+                        e.currentTarget.style.borderColor = 'var(--border)';
+                    }}
                 >
-                    {theme === 'light' ? 'DARK' : 'LIGHT'}
+                    {theme === 'light' ? '● Dark' : '○ Light'}
                 </button>
             </div>
 
-            {/* Mobile Nav Placeholder or just show links if small enough */}
-            <div className="flex sm:hidden gap-3">
-                {navItems.map((item) => (
-                    <a
-                        key={item.name}
-                        href={item.href}
-                        className="font-bold text-[10px] tracking-tighter"
-                    >
-                        {item.name}
-                    </a>
-                ))}
-            </div>
+            {/* Mobile: Show simplified nav */}
+            <style>{`
+                @media (max-width: 768px) {
+                    nav { padding: 16px 24px !important; }
+                    .nav-links-desktop { display: none !important; }
+                }
+            `}</style>
         </nav>
     );
 };

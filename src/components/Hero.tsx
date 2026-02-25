@@ -1,47 +1,185 @@
-import TicTacToe from './TicTacToe';
-import TextToSpeech from './TextToSpeech';
-import SpeechToText from './SpeechToText';
-import DinoGame from './DinoGame';
-import Projects from './Projects';
+import { skills } from '../data/skills';
 
 const Hero = () => {
     return (
-        <div className="flex flex-col gap-12 py-8">
-            {/* About Section */}
-            <section id="about" className="border-4 border-zinc-900 dark:border-white p-8 bg-white dark:bg-zinc-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:shadow-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <h2 className="text-3xl font-black mb-6 tracking-tightest border-b-4 border-zinc-900 dark:border-white inline-block">ABOUT ME</h2>
-                <p className="text-xl leading-relaxed font-bold">
-                    I am a Full Stack Developer refreshing my frontend skills.
-                    I build robust applications and am currently focused on React, TypeScript, and modern UI patterns.
+        <div className="hero-section fade-up">
+            <div>
+                <div className="hero-tag fade-up">Open to opportunities</div>
+                <h1 className="fade-up delay-1">
+                    Building <em>robust</em> full-stack applications
+                </h1>
+                <p className="hero-desc fade-up delay-2">
+                    Full Stack Developer refreshing frontend skills and building modern web applications.
+                    I specialize in end-to-end development — from React interfaces to Node.js backends and cloud infrastructure.
                 </p>
-            </section>
-
-            {/* Skills Section */}
-            <section id="skills" className="border-4 border-zinc-900 dark:border-white p-8 bg-white dark:bg-zinc-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:shadow-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-                <h2 className="text-3xl font-black mb-6 tracking-tightest border-b-4 border-zinc-900 dark:border-white inline-block">TECHNOLOGIES</h2>
-                <div className="flex flex-wrap gap-4 font-mono text-sm">
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[REACT]</span>
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[TYPESCRIPT]</span>
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[TAILWIND]</span>
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[NODE.JS]</span>
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[MONGODB]</span>
-                    <span className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-3 py-1 font-bold">[DOCKER]</span>
+                <div className="hero-actions fade-up delay-3">
+                    <a href="#work" className="btn-primary">View my work</a>
+                    <a href="#contact" className="btn-ghost">Get in touch ↗</a>
                 </div>
-            </section>
+            </div>
 
-            {/* Interactive Apps */}
-            <section id="apps" className="border-4 border-zinc-900 dark:border-white p-8 bg-white dark:bg-zinc-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:shadow-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                <h2 className="text-3xl font-black mb-8 tracking-tightest border-b-4 border-zinc-900 dark:border-white inline-block">INTERACTIVE APPS</h2>
-                <div className="flex flex-wrap gap-8">
-                    <TicTacToe />
-                    <TextToSpeech />
-                    <SpeechToText />
-                    <DinoGame />
+            <div className="hero-meta fade-up delay-4">
+                <div className="hero-card">
+                    <div className="hero-card-label">Current focus</div>
+                    <div className="hero-card-value">Full Stack Developer</div>
+                    <div className="hero-card-sub">MongoDB · Express · React · Node.js</div>
                 </div>
-            </section>
+                <div className="hero-card">
+                    <div className="hero-card-label">Core skills</div>
+                    <div className="skills-list">
+                        {skills.map((skill) => (
+                            <span key={skill} className="skill-chip">{skill}</span>
+                        ))}
+                    </div>
+                </div>
+                <div className="hero-card">
+                    <div className="hero-card-label">Looking for</div>
+                    <div className="hero-card-value">Full Stack / Software Engineer</div>
+                    <div className="hero-card-sub">Enterprise · FinTech · Scalable Infrastructure</div>
+                </div>
+            </div>
 
-            {/* Projects */}
-            <Projects />
+            <style>{`
+                .hero-section {
+                    padding: 160px 48px 100px;
+                    max-width: 1100px;
+                    margin: 0 auto;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 80px;
+                    align-items: center;
+                }
+                .hero-tag {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: var(--accent-light);
+                    padding: 5px 12px;
+                    border-radius: 20px;
+                    margin-bottom: 24px;
+                }
+                .hero-tag::before {
+                    content: '';
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                }
+                .hero-section h1 {
+                    font-family: var(--serif);
+                    font-size: clamp(42px, 5vw, 60px);
+                    font-weight: 300;
+                    line-height: 1.1;
+                    letter-spacing: -0.03em;
+                    color: var(--ink);
+                    margin-bottom: 24px;
+                }
+                .hero-section h1 em {
+                    font-style: italic;
+                    color: var(--accent);
+                }
+                .hero-desc {
+                    font-size: 16px;
+                    color: var(--ink-muted);
+                    line-height: 1.7;
+                    max-width: 440px;
+                    margin-bottom: 40px;
+                }
+                .hero-actions {
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                }
+                .btn-primary {
+                    display: inline-block;
+                    background: var(--ink);
+                    color: var(--white);
+                    padding: 13px 28px;
+                    border-radius: 40px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-decoration: none;
+                    transition: background 0.2s, transform 0.15s;
+                }
+                .btn-primary:hover {
+                    background: var(--accent);
+                    transform: translateY(-1px);
+                }
+                .btn-ghost {
+                    display: inline-block;
+                    color: var(--ink-muted);
+                    font-size: 14px;
+                    text-decoration: none;
+                    padding: 13px 0;
+                    border-bottom: 1px solid var(--border);
+                    transition: color 0.2s, border-color 0.2s;
+                }
+                .btn-ghost:hover {
+                    color: var(--ink);
+                    border-color: var(--ink);
+                }
+                .hero-meta {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                }
+                .hero-card {
+                    background: var(--white);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius);
+                    padding: 24px 28px;
+                    transition: box-shadow 0.2s;
+                }
+                .hero-card:hover {
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+                }
+                .hero-card-label {
+                    font-size: 11px;
+                    font-weight: 600;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    color: var(--ink-muted);
+                    margin-bottom: 12px;
+                }
+                .hero-card-value {
+                    font-family: var(--serif);
+                    font-size: 22px;
+                    font-weight: 300;
+                    color: var(--ink);
+                    margin-bottom: 4px;
+                }
+                .hero-card-sub {
+                    font-size: 13px;
+                    color: var(--ink-muted);
+                }
+                .skills-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    margin-top: 8px;
+                }
+                .skill-chip {
+                    background: var(--surface);
+                    border: 1px solid var(--border);
+                    padding: 4px 12px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    color: var(--ink);
+                    font-weight: 400;
+                }
+                @media (max-width: 768px) {
+                    .hero-section {
+                        grid-template-columns: 1fr;
+                        padding: 100px 24px 30px;
+                        gap: 40px;
+                    }
+                }
+            `}</style>
         </div>
     );
 };
