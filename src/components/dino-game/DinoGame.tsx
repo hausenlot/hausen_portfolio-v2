@@ -96,10 +96,26 @@ const DinoGame = () => {
         };
     }, [isOpen]);
 
-    // Touch controls
+    // Touch controls — top half = jump, bottom half = duck
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
         e.preventDefault();
-        engineRef.current?.handleInput('jump');
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const touchY = e.touches[0].clientY - rect.top;
+        const halfHeight = rect.height / 2;
+
+        if (touchY < halfHeight) {
+            engineRef.current?.handleInput('jump');
+        } else {
+            engineRef.current?.handleInput('duck-start');
+        }
+    }, []);
+
+    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        e.preventDefault();
+        engineRef.current?.handleInput('duck-end');
     }, []);
 
     const formatScore = (s: number) => String(s).padStart(5, '0');
@@ -168,6 +184,7 @@ const DinoGame = () => {
                             <canvas
                                 ref={canvasRef}
                                 onTouchStart={handleTouchStart}
+                                onTouchEnd={handleTouchEnd}
                                 style={{
                                     display: 'block',
                                     width: '100%',
@@ -190,7 +207,7 @@ const DinoGame = () => {
                         </div>
 
                         <p className="dino-controls-hint">
-                            SPACE / TAP = Jump &nbsp; ↓ = Duck
+                            SPACE / Tap top = Jump &nbsp; ↓ / Hold bottom = Duck
                         </p>
 
                         {gameState === 'GAME_OVER' ? (
