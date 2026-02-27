@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { projects } from '../data/projects';
+import { useTheme } from '../hooks/useTheme';
 
 const Work = () => {
     const [statuses, setStatuses] = useState<Record<string, string>>({});
+    const { theme } = useTheme();
 
     useEffect(() => {
         const checkStatuses = async () => {
@@ -131,7 +133,7 @@ const Work = () => {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="work-thumb"
-                                style={{ background: project.thumbGradient }}
+                                style={{ background: theme === 'dark' && project.thumbGradientDark ? project.thumbGradientDark : project.thumbGradient }}
                             >
                                 {renderThumbnailArt()}
                                 <div className="work-thumb-overlay">
@@ -274,7 +276,7 @@ const Work = () => {
                     position: absolute;
                     inset: 0;
                     opacity: 0;
-                    background: rgba(197,89,58,0.08);
+                    background: color-mix(in srgb, var(--accent) 12%, transparent);
                     transition: opacity 0.3s;
                     display: flex;
                     align-items: center;
@@ -285,7 +287,7 @@ const Work = () => {
                 }
                 .view-label {
                     background: var(--ink);
-                    color: #FDFCFA;
+                    color: var(--bg);
                     padding: 8px 18px;
                     border-radius: 40px;
                     font-size: 12px;
@@ -300,7 +302,7 @@ const Work = () => {
                 /* Dashboard Art */
                 .thumb-ui {
                     width: 80%;
-                    background: white;
+                    background: var(--surface);
                     border-radius: 8px;
                     padding: 16px;
                     box-shadow: 0 4px 20px rgba(0,0,0,0.1);

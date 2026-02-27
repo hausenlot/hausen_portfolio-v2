@@ -9,6 +9,7 @@ export interface Project {
     year: string;
     impact?: string;
     thumbGradient: string;
+    thumbGradientDark?: string;
     url?: string;
     repo?: string;
     featured?: boolean;
@@ -28,6 +29,7 @@ export const projects: Project[] = [
         year: '2025',
         impact: 'Shipped & live',
         thumbGradient: 'linear-gradient(135deg, #E8F0F7 0%, #C5D8EC 100%)',
+        thumbGradientDark: 'linear-gradient(135deg, #141C26 0%, #1A2636 100%)',
         repo: 'https://github.com/hausenlot/hausen_portfolio-v2',
         url: 'https://hausenlot.github.io/hausen_portfolio-v2/',
         featured: true,
@@ -38,13 +40,14 @@ export const projects: Project[] = [
         title: "FFA File Manager",
         url: "https://file.polobutporo.xyz/",
         repo: "https://github.com/hausenlot/file-manager",
-        tech: ["MongoDB", "Express", "React", "Node", "MinioS3", "RabbitMQ", "Docker", "Nginx", "CloudFlare"],
+        tech: ["MongoDB", "Express", "React", "Node", "MinioS3", "RabbitMQ", "Docker", "Nginx", "CloudFlare", "GitHub Actions"],
         category: 'Full Stack · Self Hosted',
-        year: '2024',
+        year: '2025',
         thumbGradient: 'linear-gradient(135deg, #EEF0E8 0%, #CCDBC5 100%)',
+        thumbGradientDark: 'linear-gradient(135deg, #151C14 0%, #1A2619 100%)',
         checkUrl: "https://file.polobutporo.xyz/",
-        descriptionMobile: "It's free for all. Upload, Download, Delete. Everything goes.",
-        descriptionDesktop: "This is FullStack. Self Hosted in my own server. It uses MinioS3 for storage and RabbitMQ for message queueing. I'm using Nginx as a reverse proxy and CloudFlare for DNS.",
+        descriptionMobile: "Fullstack Project of mine. Self Hosted in my own server. Can be used publicly or privately.",
+        descriptionDesktop: "It's a fullstack project where I applied GitHub Actions for CI/CD, Docker for containerization, and Nginx for reverse proxy. It uses MinioS3 for storage and RabbitMQ for message queueing. I'm using CloudFlare for DNS.",
         description: "This is FullStack. Self Hosted in my own server. It uses MinioS3 for storage and RabbitMQ for message queueing. I'm using Nginx as a reverse proxy and CloudFlare for DNS.",
         thumbnailType: 'server',
         // offlineMessage: "My local server is currently resting 💤. Feel free to contact me if you'd like me to spin it up for you to test, or check out the demo video!",
@@ -59,8 +62,9 @@ export const projects: Project[] = [
         repo: "https://github.com/hausenlot/STT-server",
         tech: ["Python", "FastAPI", "faster-whisper", "Docker", "Nginx", "CloudFlare"],
         category: 'AI · Microservice · Self Hosted',
-        year: '2024',
+        year: '2025',
         thumbGradient: 'linear-gradient(135deg, #F0E8EE 0%, #DCC5DB 100%)',
+        thumbGradientDark: 'linear-gradient(135deg, #1C141B 0%, #261A25 100%)',
         checkUrl: "https://stt.polobutporo.xyz/",
         descriptionMobile: "So what did the audio said? Yes, I will tell you.",
         descriptionDesktop: "So what did the audio said? Yes, I will tell you. Drag and drop the file, pick output and there you go. Free STT service. Just make sure you speak english.",
