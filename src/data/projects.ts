@@ -14,7 +14,7 @@ export interface Project {
     repo?: string;
     featured?: boolean;
     checkUrl?: string;
-    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api';
+    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api' | 'social';
     offlineMessage?: string;
     onlineMessage?: string;
     demoUrl?: string;
@@ -70,9 +70,27 @@ export const projects: Project[] = [
         descriptionDesktop: "So what did the audio said? Yes, I will tell you. Drag and drop the file, pick output and there you go. Free STT service. Just make sure you speak english.",
         description: "So what did the audio said? Yes, I will tell you. Drag and drop the file, pick output and there you go. Free STT service. Just make sure you speak english.",
         thumbnailType: 'terminal',
-        offlineMessage: "My local server is currently asleep 💤. Feel free to contact me if you'd like me to spin it up for you to test.",
+        offlineMessage: "It's down, No plan on running it due to the fact that it consumes too much RAM and most of the time its on IDLE, so no I wont run this again.",
         onlineMessage: "The STT microservice runs hot! Ready to transcribe your audio right now.",
         demoUrl: "https://www.youtube.com/@hausenlot"
+    },
+    {
+        title: 'Rant',
+        description: 'A Social Media Platform built with React.js, ASP.NET Core, and SQL Lite. Pretty good for first try. I learned that ASP.NET Core is just basically Ruby on Rails minus the Front end and its useful helpers. The fact that its MVC, has migrations already makes me feel comfortable, As of now its on beta but its currently live.',
+        tech: ['React', 'TypeScript', 'CSS', 'Vite', 'ASP.NET Core', 'SQL Lite', 'C#'],
+        category: 'Web · Full Stack',
+        year: '2026',
+        impact: 'Live',
+        thumbGradient: 'linear-gradient(135deg, #E8F0F7 0%, #C5D8EC 100%)',
+        thumbGradientDark: 'linear-gradient(135deg, #141C26 0%, #1A2636 100%)',
+        repo: 'https://github.com/hausenlot/socmed-backend',
+        url: 'https://social.polobutporo.xyz/',
+        featured: true,
+        thumbnailType: 'social',
+        checkUrl: 'https://social.polobutporo.xyz/',
+        offlineMessage: "My local server is currently asleep 💤. Feel free to contact me if you'd like me to spin it up for you to test.",
+        onlineMessage: "The Rant platform is live and bustling! Come join the conversation.",
+        descriptionMobile: "Social media for yappers with anger management issue."
     },
     // {
     //     title: 'Deployment Tool',

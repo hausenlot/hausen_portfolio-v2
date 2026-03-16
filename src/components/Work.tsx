@@ -12,11 +12,26 @@ const Work = () => {
 
             const checkProjectStatus = (url: string) => {
                 return new Promise<string>((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve("Online");
-                    img.onerror = () => resolve("Offline");
-                    // Append vite.svg and a timestamp to bypass cache
-                    img.src = `${url}vite.svg?t=${new Date().getTime()}`;
+                    const icons = ['favicon.svg', 'vite.svg', 'favicon.ico', 'favicon.png'];
+                    let currentIconIndex = 0;
+
+                    const tryNextIcon = () => {
+                        if (currentIconIndex >= icons.length) {
+                            resolve("Offline");
+                            return;
+                        }
+
+                        const img = new Image();
+                        img.onload = () => resolve("Online");
+                        img.onerror = () => {
+                            currentIconIndex++;
+                            tryNextIcon();
+                        };
+                        // Append icon and a timestamp to bypass cache
+                        img.src = `${url}${icons[currentIconIndex]}?t=${new Date().getTime()}`;
+                    };
+
+                    tryNextIcon();
                 });
             };
 
@@ -101,6 +116,48 @@ const Work = () => {
                                                 <div className="server-lines">
                                                     <div className="s-line"></div>
                                                     <div className="s-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            case 'social':
+                                return (
+                                    <div className="thumb-feed">
+                                        <div className="thumb-social-tw">
+                                            <div className="tw-avatar"></div>
+                                            <div className="tw-content">
+                                                <div className="tw-header">
+                                                    <div className="tw-name">Rant</div>
+                                                    <div className="tw-handle">@beta · 2026</div>
+                                                </div>
+                                                <div className="tw-text">
+                                                    <div className="tw-line"></div>
+                                                    <div className="tw-line"></div>
+                                                    <div className="tw-line mid"></div>
+                                                </div>
+                                                <div className="tw-actions">
+                                                    <div className="tw-action"></div>
+                                                    <div className="tw-action"></div>
+                                                    <div className="tw-action"></div>
+                                                    <div className="tw-action"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="thumb-social-tw secondary">
+                                            <div className="tw-avatar secondary"></div>
+                                            <div className="tw-content">
+                                                <div className="tw-header">
+                                                    <div className="tw-name">User</div>
+                                                    <div className="tw-handle">@dev · 2m</div>
+                                                </div>
+                                                <div className="tw-text">
+                                                    <div className="tw-line mid"></div>
+                                                    <div className="tw-line short"></div>
+                                                </div>
+                                                <div className="tw-actions">
+                                                    <div className="tw-action"></div>
+                                                    <div className="tw-action"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -423,6 +480,107 @@ const Work = () => {
                     border-radius: 1px;
                 }
                 
+                /* Twitter-style Social Art */
+                .thumb-feed {
+                    position: relative;
+                    width: 90%;
+                    height: 80%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .thumb-social-tw {
+                    position: absolute;
+                    width: 75%;
+                    background: var(--surface);
+                    border-radius: 12px;
+                    padding: 16px;
+                    border: 1px solid var(--border);
+                    display: flex;
+                    gap: 12px;
+                    animation: float 6s ease-in-out infinite;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    z-index: 2;
+                    top: 15%;
+                    left: 5%;
+                }
+                .thumb-social-tw.secondary {
+                    z-index: 1;
+                    top: 45%;
+                    left: 25%;
+                    width: 70%;
+                    animation-delay: -3s;
+                    opacity: 0.8;
+                }
+                .tw-line.short { width: 40%; }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-12px); }
+                }
+                .tw-avatar {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: var(--accent-light);
+                    flex-shrink: 0;
+                }
+                .tw-avatar.secondary {
+                    background: var(--border);
+                }
+                .tw-content {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .tw-header {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                }
+                .tw-name {
+                    font-size: 13px;
+                    font-weight: 700;
+                    color: var(--ink);
+                }
+                .tw-handle {
+                    font-size: 12px;
+                    color: var(--ink-muted);
+                }
+                .tw-text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                }
+                .tw-line {
+                    height: 6px;
+                    background: var(--border);
+                    border-radius: 3px;
+                    animation: pulse-line 3s ease-in-out infinite;
+                }
+                .tw-line.mid { width: 70%; }
+                @keyframes pulse-line {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                }
+                .tw-actions {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 8px;
+                    padding-right: 25%;
+                }
+                .tw-action {
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background: var(--border);
+                    transition: transform 0.2s, background 0.2s;
+                }
+                .work-card:hover .tw-action {
+                    background: var(--accent-light);
+                    transform: scale(1.1);
+                }
+                
                 .work-body {
                     padding: 24px 28px;
                     display: flex;
@@ -579,7 +737,7 @@ const Work = () => {
                     .work-section { padding: 30px 24px; }
                     .work-grid { grid-template-columns: 1fr; }
                     .work-card.featured { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-                    .work-card.featured .work-thumb { height: auto; }
+                    .work-card.featured .work-thumb { height: auto; aspect-ratio: 16/10; }
                 }
             `}</style>
         </section>
