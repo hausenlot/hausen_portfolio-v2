@@ -68,6 +68,43 @@ const Work = () => {
 
                     const renderThumbnailArt = () => {
                         switch (project.thumbnailType) {
+                            case 'browser':
+                                return (
+                                    <div className="thumb-browser">
+                                        <div className="browser-header">
+                                            <div className="browser-dots">
+                                                <div className="dot close"></div>
+                                                <div className="dot minimize"></div>
+                                                <div className="dot maximize"></div>
+                                            </div>
+                                            <div className="browser-url">local://wasm-ai</div>
+                                        </div>
+                                        <div className="browser-body">
+                                            <div className="browser-sidebar">
+                                                <div className="b-line"></div>
+                                                <div className="b-line"></div>
+                                                <div className="b-line short"></div>
+                                            </div>
+                                            <div className="browser-content">
+                                                <div className="b-video">
+                                                    <div className="play-circle">
+                                                        <div className="play-btn"></div>
+                                                    </div>
+                                                </div>
+                                                <div className="b-waveform">
+                                                    <div className="wave w1"></div>
+                                                    <div className="wave w2"></div>
+                                                    <div className="wave w3"></div>
+                                                    <div className="wave w4"></div>
+                                                    <div className="wave w5"></div>
+                                                    <div className="wave w4"></div>
+                                                    <div className="wave w2"></div>
+                                                </div>
+                                                <div className="wasm-badge">WASM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
                             case 'terminal':
                                 return (
                                     <div className="thumb-terminal">
@@ -338,6 +375,7 @@ const Work = () => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    z-index: 10;
                 }
                 .work-thumb:hover .work-thumb-overlay {
                     opacity: 1;
@@ -355,7 +393,154 @@ const Work = () => {
                 .work-thumb:hover .view-label {
                     transform: translateY(0);
                 }
-                
+
+                /* Browser/WASM Art */
+                .thumb-browser {
+                    width: 75%;
+                    height: 65%;
+                    background: var(--surface);
+                    border-radius: 8px;
+                    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+                    border: 1px solid var(--border);
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    position: relative;
+                    transition: transform 0.3s ease;
+                }
+                .work-card:hover .thumb-browser {
+                    transform: scale(1.02) translateY(-2px);
+                }
+                .browser-header {
+                    background: var(--bg);
+                    padding: 8px 12px;
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid var(--border);
+                    gap: 12px;
+                }
+                .browser-dots {
+                    display: flex;
+                    gap: 5px;
+                }
+                .browser-dots .dot {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                }
+                .browser-dots .close { background: #ff5f56; }
+                .browser-dots .minimize { background: #ffbd2e; }
+                .browser-dots .maximize { background: #27c93f; }
+                .browser-url {
+                    background: var(--surface);
+                    border-radius: 12px;
+                    font-size: 10px;
+                    padding: 3px 10px;
+                    color: var(--ink-muted);
+                    font-family: monospace;
+                    flex: 1;
+                    text-align: center;
+                    border: 1px solid var(--border);
+                }
+                .browser-body {
+                    display: flex;
+                    flex: 1;
+                    padding: 10px;
+                    gap: 10px;
+                    background: var(--surface);
+                }
+                .browser-sidebar {
+                    width: 25%;
+                    border-right: 1px solid var(--border);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    padding-right: 8px;
+                }
+                .b-line {
+                    height: 6px;
+                    background: var(--border);
+                    border-radius: 3px;
+                }
+                .b-line.short { width: 60%; }
+                .browser-content {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    position: relative;
+                }
+                .b-video {
+                    background: var(--bg);
+                    border-radius: 6px;
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid var(--border);
+                    position: relative;
+                    overflow: hidden;
+                }
+                .play-circle {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: var(--surface);
+                    border: 1px solid var(--border);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: transform 0.2s, background 0.2s;
+                }
+                .work-card:hover .play-circle {
+                    transform: scale(1.1);
+                    background: var(--border);
+                }
+                .play-btn {
+                    width: 0; 
+                    height: 0; 
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    border-left: 8px solid var(--accent);
+                    margin-left: 3px;
+                }
+                .b-waveform {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4px;
+                    height: 20px;
+                }
+                .wave {
+                    width: 4px;
+                    background: var(--accent);
+                    border-radius: 2px;
+                    animation: wave-anim 1s ease-in-out infinite alternate;
+                }
+                .wave.w1 { height: 30%; animation-delay: 0.1s; }
+                .wave.w2 { height: 50%; animation-delay: 0.2s; }
+                .wave.w3 { height: 80%; animation-delay: 0.3s; }
+                .wave.w4 { height: 100%; animation-delay: 0.4s; background: var(--ink); }
+                .wave.w5 { height: 60%; animation-delay: 0.5s; background: var(--ink); }
+                @keyframes wave-anim {
+                    0% { transform: scaleY(0.4); opacity: 0.6; }
+                    100% { transform: scaleY(1); opacity: 1; }
+                }
+                .wasm-badge {
+                    position: absolute;
+                    bottom: -8px;
+                    right: -8px;
+                    font-size: 8px;
+                    font-weight: 800;
+                    background: var(--ink);
+                    color: var(--bg);
+                    padding: 3px 6px;
+                    border-radius: 4px;
+                    letter-spacing: 0.5px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 2;
+                }
+
                 /* Dashboard Art */
                 .thumb-ui {
                     width: 80%;

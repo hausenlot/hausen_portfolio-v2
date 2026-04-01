@@ -14,7 +14,7 @@ export interface Project {
     repo?: string;
     featured?: boolean;
     checkUrl?: string;
-    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api' | 'social';
+    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api' | 'social' | 'browser';
     offlineMessage?: string;
     onlineMessage?: string;
     demoUrl?: string;
@@ -57,21 +57,20 @@ export const projects: Project[] = [
     },
     {
         id: 2,
-        title: "Budget Scribe",
-        url: "https://stt.polobutporo.xyz/",
-        repo: "https://github.com/hausenlot/STT-server",
-        tech: ["Python", "FastAPI", "faster-whisper", "Docker", "Nginx", "CloudFlare"],
-        category: 'AI · Microservice · Self Hosted',
-        year: '2025',
+        title: "Media Hub",
+        url: "https://media-hub-rho.vercel.app/",
+        repo: "https://github.com/hausenlot/media_hub",
+        tech: ["React", "Typescript", "Vite", "WASM", "Piper", "FFmpeg", "Whisper-base"],
+        category: 'AI · Client-Side Process · Vercel',
+        year: '2026',
         thumbGradient: 'linear-gradient(135deg, #F0E8EE 0%, #DCC5DB 100%)',
         thumbGradientDark: 'linear-gradient(135deg, #1C141B 0%, #261A25 100%)',
-        checkUrl: "https://stt.polobutporo.xyz/",
-        descriptionMobile: "So what did the audio said? Yes, I will tell you.",
-        descriptionDesktop: "So what did the audio said? Yes, I will tell you. Drag and drop the file, pick output and there you go. Free STT service. Just make sure you speak english.",
-        description: "So what did the audio said? Yes, I will tell you. Drag and drop the file, pick output and there you go. Free STT service. Just make sure you speak english.",
-        thumbnailType: 'terminal',
-        offlineMessage: "It's down, No plan on running it due to the fact that it consumes too much RAM and most of the time its on IDLE, so no I wont run this again.",
-        onlineMessage: "The STT microservice runs hot! Ready to transcribe your audio right now.",
+        descriptionMobile: "No server? No problem. This app runs entirely on your browser using WASM.",
+        descriptionDesktop: "It has a lot tools on it. You can Dub your Video with AI. You can translate it too before generating a Voice. You can give a file to get Transcription but english only, You can use TTS to generate any audio you want, Use FFMpeg to convert + modify your Video. Up to you",
+        description: "It has a lot tools on it. You can Dub your Video with AI. You can translate it too before generating a Voice. You can give a file to get Transcription but english only, You can use TTS to generate any audio you want, Use FFMpeg to convert + modify your Video. Up to you",
+        thumbnailType: 'browser',
+        offlineMessage: "Vercel did me dirty. It was working I swear",
+        onlineMessage: "Runs on Vercel so if its down then Vercel did me dirty lmao",
         demoUrl: "https://www.youtube.com/@hausenlot"
     },
     {
