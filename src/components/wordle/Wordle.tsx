@@ -244,6 +244,19 @@ const Wordle = () => {
                             <h3>Wordle</h3>
                             <div className="wordle-header-actions">
                                 <button
+                                    onClick={() => setCurrentGuess(targetWord)}
+                                    className="hint-btn"
+                                    disabled={guesses.length < 5 || gameStatus !== 'playing'}
+                                    title={guesses.length < 5 ? "Hint available after 5 guesses" : "Reveal target word"}
+                                    aria-label="Reveal target word"
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                                        <line x1="9" y1="18" x2="15" y2="18" />
+                                        <line x1="10" y1="22" x2="14" y2="22" />
+                                    </svg>
+                                </button>
+                                <button
                                     onClick={loadNewGame}
                                     className="new-game-btn"
                                     title="New game"
@@ -489,6 +502,30 @@ const Wordle = () => {
                     color: var(--bg);
                     border-color: var(--ink);
                     transform: rotate(90deg);
+                }
+                .hint-btn {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    border: 1px solid var(--border);
+                    background: var(--surface);
+                    color: var(--ink-muted);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s;
+                    font-family: var(--sans);
+                }
+                .hint-btn:hover:not(:disabled) {
+                    background: var(--ink);
+                    color: var(--bg);
+                    border-color: var(--ink);
+                    transform: scale(1.1);
+                }
+                .hint-btn:disabled {
+                    opacity: 0.3;
+                    cursor: not-allowed;
                 }
                 
                 /* Wordle-specific styles */
