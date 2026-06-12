@@ -12,7 +12,7 @@ const Work = () => {
 
             const checkProjectStatus = (url: string) => {
                 return new Promise<string>((resolve) => {
-                    const icons = ['favicon.svg', 'vite.svg', 'favicon.ico', 'favicon.png'];
+                    const icons = ['favicon.svg', 'vite.svg', 'favicon.ico', 'favicon.png', 'e6ba3f5a-b57e-4070-9a96-4e95f02f5980'];
                     let currentIconIndex = 0;
 
                     const tryNextIcon = () => {
@@ -48,10 +48,6 @@ const Work = () => {
         };
 
         checkStatuses();
-
-        // Optional: Polling every 30 seconds
-        const interval = setInterval(checkStatuses, 30000);
-        return () => clearInterval(interval);
     }, []);
 
     return (
@@ -198,6 +194,41 @@ const Work = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                );
+                            case 'rag':
+                                return (
+                                    <div className="thumb-chatbot">
+                                        <div className="chatbot-header">
+                                            <div className="chatbot-avatar">🤖</div>
+                                            <div className="chatbot-status">
+                                                <span className="status-online"></span>
+                                                Online
+                                            </div>
+                                        </div>
+                                        <div className="chatbot-messages">
+                                            <div className="message user">
+                                                <div className="message-bubble">How does RAG work?</div>
+                                            </div>
+                                            <div className="message bot">
+                                                <div className="message-bubble">RAG combines retrieval with generation! 📚✨</div>
+                                            </div>
+                                            <div className="message user">
+                                                <div className="message-bubble short">Show me</div>
+                                            </div>
+                                            <div className="message bot typing">
+                                                <div className="message-bubble">
+                                                    <span className="dot"></span>
+                                                    <span className="dot"></span>
+                                                    <span className="dot"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="chatbot-input">
+                                            <div className="input-placeholder">Ask me anything...</div>
+                                            <div className="send-btn">→</div>
+                                        </div>
+                                        <div className="rag-badge-sm">RAG</div>
                                     </div>
                                 );
                             case 'dashboard':

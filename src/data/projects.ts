@@ -14,7 +14,7 @@ export interface Project {
     repo?: string;
     featured?: boolean;
     checkUrl?: string;
-    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api' | 'social' | 'browser';
+    thumbnailType?: 'dashboard' | 'terminal' | 'server' | 'api' | 'social' | 'browser' | 'rag';
     offlineMessage?: string;
     onlineMessage?: string;
     demoUrl?: string;
@@ -22,36 +22,35 @@ export interface Project {
 
 export const projects: Project[] = [
     {
-        title: 'Portfolio V2',
-        description: 'This portfolio site — built with React, TypeScript, and vanilla CSS. Features interactive demos including Tic-Tac-Toe, Text-to-Speech, Speech-to-Text, and a Dino runner game.',
-        tech: ['React', 'TypeScript', 'CSS', 'Vite'],
-        category: 'Web · Personal',
-        year: '2025',
-        impact: 'Shipped & live',
+        title: 'Agentic Local RAG',
+        description: 'A very simple RAG system that runs entirely on your local machine. It uses a vector database to store the embeddings and a simple agent to answer your questions. It can be used for personal knowledge management or as a local assistant. It is currently live on one of my website.',
+        tech: ['Python', 'Ollama', 'QWEN', 'ChromaDB'],
+        category: 'AI · RAG · Agentic · ChatBot · Vector Embeddings',
+        year: '2026',
+        impact: 'Live @ file.polobutporo.xyz',
         thumbGradient: 'linear-gradient(135deg, #E8F0F7 0%, #C5D8EC 100%)',
         thumbGradientDark: 'linear-gradient(135deg, #141C26 0%, #1A2636 100%)',
-        repo: 'https://github.com/hausenlot/hausen_portfolio-v2',
-        url: 'https://hausenlot.github.io/hausen_portfolio-v2/',
+        repo: 'https://github.com/hausenlot/gemma3-rag',
+        url: '#',
         featured: true,
-        thumbnailType: 'dashboard',
+        thumbnailType: 'rag',
     },
     {
         id: 1,
-        title: "FFA File Manager",
-        url: "https://file.polobutporo.xyz/",
-        repo: "https://github.com/hausenlot/file-manager",
-        tech: ["MongoDB", "Express", "React", "Node", "MinioS3", "RabbitMQ", "Docker", "Nginx", "CloudFlare", "GitHub Actions"],
-        category: 'Full Stack · Self Hosted',
+        title: "Multimedia Micro Service",
+        url: "https://file.polobutporo.xyz/dashboard/",
+        repo: "https://github.com/hausenlot/media-gateway-server",
+        tech: ["MongoDB", "Express", "React", "Node / TypeScript", "MinioS3", "RabbitMQ", "Docker", "Agentic RAG", "CloudFlare", "GitHub Actions"],
+        category: 'Microservice · Self Hosted',
         year: '2025',
         impact: 'Self-Hosted',
         thumbGradient: 'linear-gradient(135deg, #EEF0E8 0%, #CCDBC5 100%)',
         thumbGradientDark: 'linear-gradient(135deg, #151C14 0%, #1A2619 100%)',
-        checkUrl: "https://file.polobutporo.xyz/",
+        checkUrl: "https://file.polobutporo.xyz/api/public/stream/",
         descriptionMobile: "Fullstack Project of mine. Self Hosted in my own server. Can be used publicly or privately.",
-        descriptionDesktop: "It's a fullstack project where I applied GitHub Actions for CI/CD, Docker for containerization, and Nginx for reverse proxy. It uses MinioS3 for storage and RabbitMQ for message queueing. I'm using CloudFlare for DNS.",
+        descriptionDesktop: "It's a Multimedia Server where my Applications store their object data. I also made a dashboard for it to manage the files and monitor the server. It uses MinioS3 for storage and RabbitMQ for message queueing. I added a Agentic RAG that can answers your question about the server.",
         description: "This is FullStack. Self Hosted in my own server. It uses MinioS3 for storage and RabbitMQ for message queueing. I'm using Nginx as a reverse proxy and CloudFlare for DNS.",
         thumbnailType: 'server',
-        // offlineMessage: "My local server is currently resting 💤. Feel free to contact me if you'd like me to spin it up for you to test, or check out the demo video!",
         offlineMessage: "My local server is currently resting 💤. Feel free to contact me if you'd like me to spin it up for you to test.",
         onlineMessage: "The server is currently online and fully operational! Feel free to test it out.",
         demoUrl: "https://www.youtube.com/@hausenlot"

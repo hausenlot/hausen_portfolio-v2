@@ -2,6 +2,7 @@ import TicTacToe from './tic-tac-toe';
 import TextToSpeech from './text-to-speech';
 import SpeechToText from './speech-to-text';
 import DinoGame from './dino-game';
+import Wordle from './wordle';
 // import SpriteTestBench from './dino-game/SpriteTestBench';
 
 const InteractiveApps = () => {
@@ -9,14 +10,15 @@ const InteractiveApps = () => {
         <section id="apps" className="apps-section">
             <div className="apps-header">
                 <h2 className="apps-title">Something Fun</h2>
-                <span className="apps-count">4 mini apps</span>
+                <span className="apps-count">5 mini apps</span>
             </div>
 
             <div className="apps-grid">
                 <TicTacToe />
+                <DinoGame />
+                <Wordle />
                 <TextToSpeech />
                 <SpeechToText />
-                <DinoGame />
             </div>
 
             {/* DEV: Sprite test bench*/}
