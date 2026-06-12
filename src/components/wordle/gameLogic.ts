@@ -14,10 +14,11 @@ export async function initSpellChecker(): Promise<void> {
     if (spellChecker) return;
 
     try {
+        const baseUrl = import.meta.env.BASE_URL;
         // Load dictionary files from public folder
         const [affResponse, dicResponse] = await Promise.all([
-            fetch('/dictionaries/en_US.aff'),
-            fetch('/dictionaries/en_US.dic')
+            fetch(`${baseUrl}dictionaries/en_US.aff`),
+            fetch(`${baseUrl}dictionaries/en_US.dic`)
         ]);
 
         const affContent = await affResponse.text();
